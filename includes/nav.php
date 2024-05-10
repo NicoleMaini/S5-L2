@@ -9,10 +9,8 @@ $cookie_expiration = time() + 60 * 60 * 24 * 365 * 10;
 if (!isset($_COOKIE['language'])) {
     setcookie('language', 'it', $cookie_expiration);
     $language = 'it';
-    echo 'sono qui dentro';
 } else {
     $language = $_COOKIE['language'];
-    echo $language;
 }
 
 ?>
