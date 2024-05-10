@@ -16,7 +16,7 @@ $options = [
 
 $pdo = new PDO($dsn, $user, $pass, $options);
 
-$stmt = $pdo->prepare("SELECT * FROM news WHERE language = ?"); // ? placheholder sostitutivo per il valore, con il quale andremo a controllare il valore successivo
+$stmt = $pdo->prepare("SELECT title, content FROM news WHERE language = ?"); // ? placheholder sostitutivo per il valore, con il quale andremo a controllare il valore successivo
 $stmt->execute([$language]);
 $articles = $stmt->fetchAll();
 
@@ -40,8 +40,32 @@ $articles = $stmt->fetchAll();
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col"><?php
+                                switch ($language) {
+                                    case 'it':
+                                        echo "Titolo";
+                                        break;
+                                    case 'en':
+                                        echo "Title";
+                                        break;
+                                    case 'sp':
+                                        echo "Título";
+                                        break;
+                                }
+                                ?></th>
+                <th scope="col"><?php
+                                switch ($language) {
+                                    case 'it':
+                                        echo "Contenuto";
+                                        break;
+                                    case 'en':
+                                        echo "Content";
+                                        break;
+                                    case 'sp':
+                                        echo "Contenido";
+                                        break;
+                                }
+                                ?></th>
             </tr>
         </thead>
         <tbody>
